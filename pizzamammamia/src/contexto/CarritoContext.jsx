@@ -11,7 +11,7 @@ export const ContextProvider = ({ children }) => {
     try {
       const compraJson = await fetch("/pizzas.json");
       const { compra } = await compraJson.json();
-      setCompra(compra || []); // Manejo de carga inicial
+      setCompra(compra || []); 
     } catch (error) {
       console.error("Error al cargar datos:", error);
     }
@@ -36,7 +36,6 @@ export const ContextProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    // Sincronizar con el localStorage cuando cambie directamente
     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
     if (JSON.stringify(cart) !== JSON.stringify(storedCart)) {
       setCart(storedCart);

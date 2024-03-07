@@ -1,4 +1,3 @@
-// SeleccionarCard.js
 import React, { useContext } from "react";
 import { ContextProvider } from "../contexto/CarritoContext";
 import { ComprarCard } from "../components/CompraCard";
