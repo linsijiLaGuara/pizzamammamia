@@ -1,0 +1,36 @@
+a.active {
+    color: darkgreen;
+}
+
+.bg-navb {
+    background-color: #007bff;
+
+}
+
+.NavLink {
+    color: white;
+    padding: 10px 15px;
+    margin-right: 10px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.NavLink :hover {
+    color: #0de6db;
+
+}
+
+
+.NavLink:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px 0;
+    gap: 2%;
+}
+
