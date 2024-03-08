@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { CompraContext } from "../contexto/CarritoContext";
 import { Card } from "react-bootstrap";
-import { Carrito } from "./IcoCarrito";
+import Carrito from "./IcoCarrito";
 
 const Productos = () => {
   const { compra, setCompra, cart, setCart } = useContext(CompraContext);
@@ -20,23 +20,17 @@ const Productos = () => {
     setCart(updatedCart);
   };
 
-  const renderCompra = () => {
-    return compra.map((item) => (
-      <div
-        key={item.id}
-        className="compra"
-        style={{
-          backgroundImage:
-            item.src && item.src.large ? `url(${item.src.large})` : "",
-          cursor: "default",
-        }}
-      >
-        <Card>
+  return (
+    <div className="p-3 gallery grid-columns-4">
+      {compra.map((item) => (
+        <Card key={item.id} style={{ width: "18rem", margin: "10px" }}>
+          <Card.Img variant="top" src={item.img} alt={item.name} />
           <Card.Body>
-            <Card.Title>{item.alt}</Card.Title>
-          </Card.Body>
-          <Card.Footer>
-            <button
+            <Card.Title>{item.name}</Card.Title>
+            <Card.Text>{item.desc}</Card.Text>
+            <Card.Text>Ingredients: {item.ingredients.join(", ")}</Card.Text>
+            <Card.Text>Price: {item.price}</Card.Text>
+            <div
               onClick={() => handleCart(item.id)}
               style={{
                 fontSize: "12px",
@@ -46,19 +40,11 @@ const Productos = () => {
                 cursor: "pointer",
               }}
             >
-              <Carrito filled={cart.includes(item.id)} />
-            </button>
-          </Card.Footer>
-          <br />
-          <span>{item.photographer}</span>
+              <Carrito id={item.id} filled={cart.includes(item.id)} />
+            </div>
+          </Card.Body>
         </Card>
-      </div>
-    ));
-  };
-
-  return (
-    <div className="App">
-      <div className="p-3 gallery grid-columns-4">{renderCompra()}</div>
+      ))}
     </div>
   );
 };
