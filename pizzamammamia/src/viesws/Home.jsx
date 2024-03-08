@@ -1,17 +1,6 @@
 import React from "react";
-import { ComprarCard } from "../components/CompraCard";
+import Productos from "../components/Productos";
 import { useNavigate } from "react-router-dom";
-
-const pizzas = [
-  // Aquí deberías tener tus datos de pizzas
-  {
-    id: 1,
-    description: "Pizza Margherita",
-    image_url: "url_de_la_imagen",
-    tags: ["Tomato", "Mozzarella", "Basil"],
-  },
-  // ... otras pizzas
-];
 
 const Home = () => {
   const navigate = useNavigate();
@@ -21,18 +10,10 @@ const Home = () => {
   };
 
   return (
-    <div className="flex flex-wrap gap-5 justify-center my-5">
-      {pizzas.map((pizza) => (
-        <ComprarCard
-          key={pizza.id}
-          id={pizza.id}
-          description={pizza.description}
-          image_url={pizza.image_url}
-          tags={pizza.tags}
-        />
-      ))}
+    <>
+      <Productos />
       <button onClick={handleNavigateToCarrito}>Ir al Carrito</button>
-    </div>
+    </>
   );
 };
 

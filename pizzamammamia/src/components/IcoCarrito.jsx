@@ -2,15 +2,15 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-import { CompraProvider } from "../contexto/CarritoContext";
+import { CompraContext } from "../contexto/CarritoContext";
 
 export const Carrito = ({ id }) => {
-  const { doCompra, cart } = useContext(CompraProvider);
+  const { cart, setCart } = useContext(CompraContext);
 
   const isProductInCart = cart.some((item) => item.id === id);
 
   return (
-    <button onClick={() => doCompra(id)}>
+    <button onClick={() => setCart(id)}>
       <FontAwesomeIcon
         icon={faShoppingCart}
         color={isProductInCart ? "red" : "gray"}
