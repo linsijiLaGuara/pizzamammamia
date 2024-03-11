@@ -1,0 +1,30 @@
+.banner {
+    background-image: url('../assets/img/pizza.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    text-align: center;
+    color: #e80b0b;
+    padding: 20px;
+
+}
+
+.banner h1 {
+    font-size: 50px;
+    color: #ffffff;
+}
+
+.banner p {
+    font-size: 30px;
+    color: #f2efef;
+    margin-bottom: 20px;
+}
+
+.banner button {
+
+    font-size: 16px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}

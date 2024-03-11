@@ -4,6 +4,7 @@ import Nav from "./components/Nav";
 import Home from "./viesws/Home";
 import { ContextProvider } from "./contexto/CarritoContext";
 import CartSelecion from "./viesws/CartSelecion";
+import PizzaId from "./viesws/PizzaId";
 import "./App.css";
 
 function App() {
@@ -13,7 +14,8 @@ function App() {
         <Nav />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/pizza/:id" element={<CartSelecion />} />
+          <Route path="/Home" element={<Home />} />
+          <Route path="/pizza/:id" element={<PizzaId />} />
           <Route path="/Carrito" element={<CartSelecion />} />
         </Routes>
       </>

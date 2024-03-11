@@ -9,7 +9,7 @@ const CartSelecion = () => {
 
   return (
     <>
-      <h1>Tus Fotos Favoritas</h1>
+      <h1>Tus Productos</h1>
       <div className="cart-selection-container">
         <div className="photo-gallery">
           {compraCarrito.length ? (

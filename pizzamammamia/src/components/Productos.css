@@ -1,0 +1,27 @@
+.Title {
+    font-size: 30px;
+}
+
+.acciones {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-detalles {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.carrito-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.carrito-text {
+    margin-left: 15px;
+}

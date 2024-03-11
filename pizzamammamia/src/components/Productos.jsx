@@ -1,12 +1,27 @@
 import { useContext } from "react";
 import { CompraContext } from "../contexto/CarritoContext";
 import { Container, Row, Card, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+
 import Carrito from "./IcoCarrito";
+import "./Productos.css";
 
 const Productos = () => {
-  const { compra, setCompra, cart, setCart, setSelectedProducts } =
-    useContext(CompraContext);
+  const navigate = useNavigate();
+  const {
+    compra,
+    setCompra,
+    cart,
+    setCart,
+    setSelectedProducts,
+    setPizzaId, // Agrega setPizzaId al contexto si aún no está ahí
+  } = useContext(CompraContext);
 
+  const handleViewDetail = (id) => {
+    const selectedProduct = compra.find((item) => item.id === id);
+    setPizzaId(selectedProduct); // Almacena la pizza seleccionada en el estado
+    navigate(`/pizza/${id}`);
+  };
   const handleCart = (id) => {
     const updatedCompra = compra.map((item) =>
       item.id === id ? { ...item, cart: !item.cart } : item
@@ -38,13 +53,30 @@ const Productos = () => {
               />
             </div>
             <Card.Body>
-              <Card.Title>{item.name}</Card.Title>
-              <Card.Text>{item.desc}</Card.Text>
-              <Card.Text>Ingredients: {item.ingredients.join(", ")}</Card.Text>
-              <Card.Text>Price: {item.price}</Card.Text>
-              <div onClick={() => handleCart(item.id)}>
-                <Carrito id={item.id} filled={cart.includes(item.id)} />
-                {cart.includes(item.id) ? " Remove from Cart" : " Add to Cart"}
+              <Card.Title className="Title">{item.name}</Card.Title>
+              <Card.Text>Ingredientes: {item.ingredients.join(", ")}</Card.Text>
+              <Card.Text>$ {item.price}</Card.Text>
+              <div className="acciones">
+                <div className="detalle-btn">
+                  <button
+                    type="button"
+                    className="btn btn-detalles"
+                    onClick={() => handleViewDetail(item.id)}
+                  >
+                    Ver detalles
+                  </button>
+                </div>
+                <div
+                  onClick={() => handleCart(item.id)}
+                  className="carrito-container"
+                >
+                  <Carrito id={item.id} filled={cart.includes(item.id)} />
+                  <span className="carrito-text">
+                    {cart.includes(item.id)
+                      ? " Quitar del Carrito"
+                      : " Agregar al Carrito"}
+                  </span>
+                </div>
               </div>
             </Card.Body>
           </Card>

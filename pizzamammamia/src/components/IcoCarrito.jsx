@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { CompraContext } from "../contexto/CarritoContext";
-
+import {Button} from "react-bootstrap"
 const Carrito = ({ id }) => {
   const { cart, setCart } = useContext(CompraContext);
 
@@ -11,7 +11,7 @@ const Carrito = ({ id }) => {
 
   return (
     <div>
-      <button
+      <Button
         onClick={() => setCart(id)}
         title={isProductInCart ? "Quitar del carrito" : "Agregar al carrito"}
       >
@@ -21,8 +21,8 @@ const Carrito = ({ id }) => {
           aria-label={
             isProductInCart ? "Producto en el carrito" : "Agregar al carrito"
           }
-        />
-      </button>
+        />Carrito
+      </Button>
     </div>
   );
 };

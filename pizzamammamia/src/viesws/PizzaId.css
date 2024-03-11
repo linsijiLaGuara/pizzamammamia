@@ -1,0 +1,28 @@
+/* En tu archivo PizzaId.css */
+.cart-selection-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.photo-card {
+    margin: 10px;
+    padding: 10px;
+    background-size: cover;
+    background-position: center;
+    width: 300px;
+    height: 300px;
+    cursor: default;
+}
+
+.photo-details {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    text-align: center;
+}
+
+.message-Id {
+    text-align: center;
+    font-size: 16px;
+    color: #555;
+}

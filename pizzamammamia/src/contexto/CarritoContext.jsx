@@ -6,13 +6,13 @@ export const ContextProvider = ({ children }) => {
   const [compra, setCompra] = useState([]);
   const [cart, setCart] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
+  const [pizzaId, setPizzaId] = useState([]);
 
   const fetchCompra = async () => {
     try {
       const response = await fetch("/pizzas.json");
       const pizzasJson = await response.json();
 
-    
       setCompra(pizzasJson);
     } catch (error) {
       console.error("Error al obtener datos de compra:", error);
@@ -25,14 +25,16 @@ export const ContextProvider = ({ children }) => {
 
   return (
     <CompraContext.Provider
-    value={{
-      compra,
-      setCompra,
-      cart,
-      setCart,
-      selectedProducts,
-      setSelectedProducts,
-    }}
+      value={{
+        compra,
+        setCompra,
+        cart,
+        setCart,
+        selectedProducts,
+        setSelectedProducts,
+        pizzaId,
+        setPizzaId,
+      }}
     >
       {children}
     </CompraContext.Provider>
