@@ -7,7 +7,8 @@ export const ContextProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [pizzaId, setPizzaId] = useState([]);
-  const [total, setTotal] = useState(0); // Nuevo estado para el total
+  const [total, setTotal] = useState(0);
+  const [precio, setPrecio] = useState(0);
 
   const fetchCompra = async () => {
     try {
@@ -35,8 +36,10 @@ export const ContextProvider = ({ children }) => {
         setSelectedProducts,
         pizzaId,
         setPizzaId,
-        total, 
-        setTotal, 
+        total,
+        setTotal,
+        precio,
+        setPrecio,
       }}
     >
       {children}

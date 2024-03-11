@@ -1,22 +1,39 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { CompraContext } from "../contexto/CarritoContext";
 import "./CartSeleccion.css";
 
 const CartSeleccion = () => {
-  const { compra, cart, total, setTotal } = useContext(CompraContext);
+  const { compra, cart, setCart } = useContext(CompraContext);
+  const [total, setTotal] = useState(0);
 
   const compraCarrito = compra.filter((item) => cart.includes(item.id));
 
+  const handleQuantityChange = (productId, newQuantity) => {
+    newQuantity = Math.max(newQuantity, 0);
+
+    const updatedCart = cart.map((productIdInCart) =>
+      productIdInCart === productId
+        ? {
+            ...compra.find((item) => item.id === productId),
+            quantity: newQuantity,
+          }
+        : productIdInCart
+    );
+
+    setCart(updatedCart);
+  };
+
   useEffect(() => {
-    const total = compraCarrito.reduce((acc, item) => {
+    // Calcula el total sumando el precio de cada elemento en compraCarrito
+    const newTotal = compraCarrito.reduce((acc, item) => {
       if (item.price && item.quantity) {
         return acc + item.price * item.quantity;
       }
       return acc;
     }, 0);
 
-    setTotal(total);
-  }, [compraCarrito, setTotal]);
+    setTotal(newTotal);
+  }, [compraCarrito, setTotal, cart]);
 
   return (
     <>
@@ -24,23 +41,43 @@ const CartSeleccion = () => {
       <div className="cart-selection-container">
         <div className="photo-gallery">
           {compraCarrito.length ? (
-            compraCarrito.map((compra) => (
+            compraCarrito.map((compraItem) => (
               <div
-                key={compra.id}
+                key={compraItem.id}
                 className="photo-card"
                 style={{
-                  backgroundImage: `url(${compra.img})`,
+                  backgroundImage: `url(${compraItem.img})`,
                   cursor: "default",
                 }}
               >
                 <div className="photo-details">
-                  <p className="title">{compra.name}</p>
-                  <p className="description">{compra.desc}</p>
-                  <p className="photographer">Precio: {compra.price}</p>
+                  <p className="title">{compraItem.name}</p>
+                  <p className="description">{compraItem.desc}</p>
+                  <p className="photographer">Precio: ${compraItem.price}</p>
                   <div className="quantity-controls">
-                    <button className="quantity-btn">+</button>
-                    <span className="quantity">{compra.quantity}</span>
-                    <button className="quantity-btn">-</button>
+                    <button
+                      className="quantity-btn"
+                      onClick={() =>
+                        handleQuantityChange(
+                          compraItem.id,
+                          compraItem.quantity + 1
+                        )
+                      }
+                    >
+                      +
+                    </button>
+                    <span className="quantity">{compraItem.quantity}</span>
+                    <button
+                      className="quantity-btn"
+                      onClick={() =>
+                        handleQuantityChange(
+                          compraItem.id,
+                          compraItem.quantity - 1
+                        )
+                      }
+                    >
+                      -
+                    </button>
                   </div>
                 </div>
               </div>

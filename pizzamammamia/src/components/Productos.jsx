@@ -19,7 +19,7 @@ const Productos = () => {
 
   const handleViewDetail = (id) => {
     const selectedProduct = compra.find((item) => item.id === id);
-    setPizzaId(selectedProduct); // Almacena la pizza seleccionada en el estado
+    setPizzaId(selectedProduct); 
     navigate(`/pizza/${id}`);
   };
   const handleCart = (id) => {
