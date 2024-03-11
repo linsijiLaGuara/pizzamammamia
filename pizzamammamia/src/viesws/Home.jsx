@@ -8,6 +8,7 @@ const Home = () => {
   const handleNavigateToCarrito = () => {
     navigate("/Carrito");
   };
+  
 
   return (
     <>

@@ -11,10 +11,16 @@ const Carrito = ({ id }) => {
 
   return (
     <div>
-      <button onClick={() => setCart(id)}>
+      <button
+        onClick={() => setCart(id)}
+        title={isProductInCart ? "Quitar del carrito" : "Agregar al carrito"}
+      >
         <FontAwesomeIcon
           icon={faShoppingCart}
           color={isProductInCart ? "red" : "gray"}
+          aria-label={
+            isProductInCart ? "Producto en el carrito" : "Agregar al carrito"
+          }
         />
       </button>
     </div>

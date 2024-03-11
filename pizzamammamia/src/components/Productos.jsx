@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { CompraContext } from "../contexto/CarritoContext";
 import { Container, Row, Card, Button } from "react-bootstrap";
-
 import Carrito from "./IcoCarrito";
 
 const Productos = () => {
-  const { compra, setCompra, cart, setCart } = useContext(CompraContext);
+  const { compra, setCompra, cart, setCart, setSelectedProducts } =
+    useContext(CompraContext);
 
   const handleCart = (id) => {
     const updatedCompra = compra.map((item) =>
@@ -19,10 +19,13 @@ const Productos = () => {
       : [...cart, id];
 
     setCart(updatedCart);
+
+    const selectedProduct = compra.find((item) => item.id === id);
+    setSelectedProducts((prev) => [...prev, selectedProduct]);
   };
 
   return (
-    <Container container-fluid>
+    <Container fluid>
       <Row className="tarjeta">
         {compra.map((item) => (
           <Card key={item.id} className="mb-2" style={{ width: "20rem" }}>
@@ -39,13 +42,10 @@ const Productos = () => {
               <Card.Text>{item.desc}</Card.Text>
               <Card.Text>Ingredients: {item.ingredients.join(", ")}</Card.Text>
               <Card.Text>Price: {item.price}</Card.Text>
-              <Button
-                onClick={() => handleCart(item.id)}
-                variant={cart.includes(item.id) ? "danger" : "primary"}
-              >
+              <div onClick={() => handleCart(item.id)}>
                 <Carrito id={item.id} filled={cart.includes(item.id)} />
                 {cart.includes(item.id) ? " Remove from Cart" : " Add to Cart"}
-              </Button>
+              </div>
             </Card.Body>
           </Card>
         ))}

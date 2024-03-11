@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Nav from "./components/Nav";
 import Home from "./viesws/Home";
 import { ContextProvider } from "./contexto/CarritoContext";
-import CartSelecion from "./viesws/Cart";
+import CartSelecion from "./viesws/CartSelecion";
 import "./App.css";
 
 function App() {
@@ -13,8 +13,8 @@ function App() {
         <Nav />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/pizza/:id" element={<CartSelecion />} />
           <Route path="/Carrito" element={<CartSelecion />} />
-          <Route path="/Carrito/:id" element={<CartSelecion />} />
         </Routes>
       </>
     </ContextProvider>

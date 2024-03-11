@@ -1,32 +1,35 @@
-// CompraCard.jsx
-import React from "react";
-import PropTypes from "prop-types";
-import { Carrito } from "./Carrito";
+import React, { useContext } from "react";
+import { CompraContext } from "../contexto/CarritoContext";
 
-const ComprarCard = ({ id, description, image_url, tags }) => {
+const CartSelecion = () => {
+  const { compra, setCompra } = useContext(CompraContext);
+
+  const compraCarrito = compra.filter((item) => item.cart);
+
   return (
-    <div className="rounded w-[250px] flex flex-col items-center bg-gray-600 p-5">
-      <figure className="w-full">
-        <img className="object-cover" src={image_url} alt={description} />
-      </figure>
-      <p>{description}</p>
-      <ul>
-        {tags.map((tag, index) => (
-          <li key={index}>{tag}</li>
-        ))}
-      </ul>
-      <div className="flex justify-end items-center">
-        <Carrito id={id} />
+    <div className="App">
+      <h1>Fotos favoritas</h1>
+      <div className="p-3 gallery grid-columns-4">
+        {compraCarrito.length ? (
+          compraCarrito.map((compra) => (
+            <div
+              key={compra.id}
+              className="compra"
+              style={{
+                backgroundImage: `url(${compra.src?.large})`,
+                cursor: "default",
+              }}
+            >
+              <p className="title">{compra.alt}</p>
+              <p>{compra.photographer}</p>
+            </div>
+          ))
+        ) : (
+          <p className="message">Carrito vacío :(</p>
+        )}
       </div>
     </div>
   );
 };
 
-ComprarCard.propTypes = {
-  id: PropTypes.number.isRequired,
-  description: PropTypes.string.isRequired,
-  image_url: PropTypes.string.isRequired,
-  tags: PropTypes.arrayOf(PropTypes.string).isRequired,
-};
-
-export default ComprarCard;
+export default CartSelecion;
