@@ -17,13 +17,12 @@ const PizzaId = () => {
         >
           <div className="photo-details">
             <p className="title">{pizzaId.name}</p>
-            <p className="description">{pizzaId.desc}</p>
-            {/* ... (otros detalles que quieras mostrar) */}
+            <p className="description"> Descripcion: {pizzaId.desc}</p>
           </div>
         </div>
       ) : (
         <p className="message-Id">
-          Tu carrito está vacío: Recuerda seleccionar el carrito para ver tu detalle
+         Recuerda  ver tu detalle
         </p>
       )}
     </div>

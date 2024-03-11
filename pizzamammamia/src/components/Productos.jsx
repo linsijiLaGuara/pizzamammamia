@@ -14,7 +14,7 @@ const Productos = () => {
     cart,
     setCart,
     setSelectedProducts,
-    setPizzaId, // Agrega setPizzaId al contexto si aún no está ahí
+    setPizzaId, 
   } = useContext(CompraContext);
 
   const handleViewDetail = (id) => {

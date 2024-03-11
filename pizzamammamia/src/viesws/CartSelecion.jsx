@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { CompraContext } from "../contexto/CarritoContext";
 import "./CartSeleccion.css";
 
-const CartSelecion = () => {
+const CartSeleccion = () => {
   const { compra } = useContext(CompraContext);
 
   const compraCarrito = compra.filter((item) => item.cart);
@@ -25,8 +25,12 @@ const CartSelecion = () => {
                 <div className="photo-details">
                   <p className="title">{compra.name}</p>
                   <p className="description">{compra.desc}</p>
-              
-                  <p className="photographer"> Precio : {compra.price}</p>
+                  <p className="photographer"> Precio: {compra.price}</p>
+                  <div className="quantity-controls">
+                    <button className="quantity-btn">+</button>
+                    <span className="quantity">{compra.quantity}</span>
+                    <button className="quantity-btn">-</button>
+                  </div>
                 </div>
               </div>
             ))
@@ -39,4 +43,4 @@ const CartSelecion = () => {
   );
 };
 
-export default CartSelecion;
+export default CartSeleccion;
