@@ -1,6 +1,7 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { CompraContext } from "../contexto/CarritoContext";
-import { Card } from "react-bootstrap";
+import { Container, Row, Card, Button } from "react-bootstrap";
+
 import Carrito from "./IcoCarrito";
 
 const Productos = () => {
@@ -21,31 +22,35 @@ const Productos = () => {
   };
 
   return (
-    <div className="p-3 gallery grid-columns-4">
-      {compra.map((item) => (
-        <Card key={item.id} style={{ width: "18rem", margin: "10px" }}>
-          <Card.Img variant="top" src={item.img} alt={item.name} />
-          <Card.Body>
-            <Card.Title>{item.name}</Card.Title>
-            <Card.Text>{item.desc}</Card.Text>
-            <Card.Text>Ingredients: {item.ingredients.join(", ")}</Card.Text>
-            <Card.Text>Price: {item.price}</Card.Text>
-            <div
-              onClick={() => handleCart(item.id)}
-              style={{
-                fontSize: "12px",
-                color: cart.includes(item.id) ? "red" : "black",
-                border: "none",
-                background: "transparent",
-                cursor: "pointer",
-              }}
-            >
-              <Carrito id={item.id} filled={cart.includes(item.id)} />
+    <Container container-fluid>
+      <Row className="tarjeta">
+        {compra.map((item) => (
+          <Card key={item.id} className="mb-2" style={{ width: "20rem" }}>
+            <div className="card-img-container">
+              <Card.Img
+                variant="top"
+                src={item.img}
+                alt={item.name}
+                className="card-img"
+              />
             </div>
-          </Card.Body>
-        </Card>
-      ))}
-    </div>
+            <Card.Body>
+              <Card.Title>{item.name}</Card.Title>
+              <Card.Text>{item.desc}</Card.Text>
+              <Card.Text>Ingredients: {item.ingredients.join(", ")}</Card.Text>
+              <Card.Text>Price: {item.price}</Card.Text>
+              <Button
+                onClick={() => handleCart(item.id)}
+                variant={cart.includes(item.id) ? "danger" : "primary"}
+              >
+                <Carrito id={item.id} filled={cart.includes(item.id)} />
+                {cart.includes(item.id) ? " Remove from Cart" : " Add to Cart"}
+              </Button>
+            </Card.Body>
+          </Card>
+        ))}
+      </Row>
+    </Container>
   );
 };
 

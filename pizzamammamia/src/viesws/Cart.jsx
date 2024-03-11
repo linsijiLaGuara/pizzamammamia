@@ -4,17 +4,17 @@ import { CompraContext } from "../contexto/CarritoContext";
 const CartSelecion = () => {
   const { compra } = useContext(CompraContext);
 
-  const favoritePhotos = compra.filter((compra) => compra.cart);
+  const compraCarrito = compra.filter((compra) => compra.cart);
 
   return (
     <div className="App">
       <h1>Fotos favoritas</h1>
       <div className="p-3 gallery grid-columns-4">
-        {favoritePhotos.length ? (
-          favoritePhotos.map((compra) => (
+        {compraCarrito.length ? (
+          compraCarrito.map((compra) => (
             <div
               key={compra.id}
-              className="photo"
+              className="compra"
               style={{
                 backgroundImage: `url(${compra.src.large})`,
                 cursor: "default",

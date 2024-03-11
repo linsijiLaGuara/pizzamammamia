@@ -14,7 +14,7 @@ h1 {
 	font-size: 60px;
 }
 
-/* Navbar */
+
 a {
 	text-decoration: none;
 	color: white;
@@ -29,25 +29,11 @@ a {
 
 
 
-.p-3 {
-	padding: 30px;
-}
-
 .loading {
 	animation: loading 2s ease-in-out infinite alternate;
 }
 
-@keyframes loading {
 
-	0%,
-	100% {
-		opacity: 1;
-	}
-
-	50% {
-		opacity: 0.2;
-	}
-}
 
 .active {
 	padding: 10px;
@@ -58,4 +44,20 @@ a {
 
 option {
 	background-color: #e5ede5;
+}
+
+
+
+.card-img {
+	width: 250px;
+	height: auto;
+
+}
+
+
+
+.tarjeta {
+	display: flex;
+
+	flex-wrap: wrap-reverse;
 }
