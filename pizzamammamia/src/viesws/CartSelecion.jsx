@@ -1,11 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { CompraContext } from "../contexto/CarritoContext";
 import "./CartSeleccion.css";
 
 const CartSeleccion = () => {
-  const { compra } = useContext(CompraContext);
+  const { compra, cart, total, setTotal } = useContext(CompraContext);
 
-  const compraCarrito = compra.filter((item) => item.cart);
+  const compraCarrito = compra.filter((item) => cart.includes(item.id));
+
+  useEffect(() => {
+    const total = compraCarrito.reduce((acc, item) => {
+      if (item.price && item.quantity) {
+        return acc + item.price * item.quantity;
+      }
+      return acc;
+    }, 0);
+
+    setTotal(total);
+  }, [compraCarrito, setTotal]);
 
   return (
     <>
@@ -25,7 +36,7 @@ const CartSeleccion = () => {
                 <div className="photo-details">
                   <p className="title">{compra.name}</p>
                   <p className="description">{compra.desc}</p>
-                  <p className="photographer"> Precio: {compra.price}</p>
+                  <p className="photographer">Precio: {compra.price}</p>
                   <div className="quantity-controls">
                     <button className="quantity-btn">+</button>
                     <span className="quantity">{compra.quantity}</span>
@@ -37,6 +48,7 @@ const CartSeleccion = () => {
           ) : (
             <p className="message">Tu carrito está vacío :(</p>
           )}
+          <p>Total a Pagar: ${total}</p>
         </div>
       </div>
     </>
